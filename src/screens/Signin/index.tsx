@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Image, StatusBar, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 import IllustrationImg from '../../assets/illustration.png'
 import { ButtonIcon } from '../../components/ButtonIcon';
@@ -9,12 +9,6 @@ import { styles } from './style';
 export function Signin() {
   return (
     <View style={styles.container}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
-
       <Image
         source={IllustrationImg}
         style={styles.image}
