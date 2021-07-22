@@ -23,31 +23,7 @@ export function Guilds({ handleGuildSelected }: Props) {
       name: 'Galera do Game',
       icon: null,
       owner: true,
-    },
-    {
-      id: '3',
-      name: 'Galera do Game',
-      icon: null,
-      owner: true,
-    },
-    {
-      id: '4',
-      name: 'Galera do Game',
-      icon: null,
-      owner: true,
-    },
-    {
-      id: '5',
-      name: 'Galera do Game',
-      icon: null,
-      owner: true,
-    },
-    {
-      id: '6',
-      name: 'Galera do Game',
-      icon: null,
-      owner: true,
-    },
+    }
   ]
 
   return (
