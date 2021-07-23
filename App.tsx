@@ -10,7 +10,9 @@ import { StatusBar } from 'react-native';
 import { Background } from './src/components/Background';
 import { Routes } from './src/routes';
 import { AuthContext, AuthProvider } from './src/hooks/auth';
+import { LogBox } from 'react-native';
 
+LogBox.ignoreAllLogs()
 
 export default function App() {
   const [fontsLoaded] = useFonts({
