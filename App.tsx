@@ -9,6 +9,7 @@ import { Signin } from './src/screens/Signin';
 import { StatusBar } from 'react-native';
 import { Background } from './src/components/Background';
 import { Routes } from './src/routes';
+import { AuthContext, AuthProvider } from './src/hooks/auth';
 
 
 export default function App() {
@@ -30,7 +31,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </Background>
   );
 }
