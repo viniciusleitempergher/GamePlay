@@ -1,10 +1,12 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { ReactNode } from "react";
 
 import * as AuthSession from 'expo-auth-session'
 import { api } from "../services/api";
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { COLLECTION_USERS } from "../configs/database";
 
 const { CDN_IMAGE } = process.env
 const { CLIENT_ID } = process.env
@@ -25,6 +27,7 @@ type AuthContextData = {
   user: User,
   loading: boolean,
   signIn: () => Promise<void>,
+  signOut: () => Promise<void>,
 }
 
 type AuthProviderProps = {
@@ -59,11 +62,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const firstName = userInfo.data.username.split(' ')[0]
         userInfo.data.avatar = `${CDN_IMAGE}/avatars/${userInfo.data.id}/${userInfo.data.avatar}.png`
 
-        setUser({
+        const userData = {
           ...userInfo.data,
           firstName,
           token: params.access_token
-        })
+        }
+
+        await AsyncStorage.setItem(COLLECTION_USERS, JSON.stringify(userData));
+
+        setUser(userData);
       }
     } catch (e) {
       throw new Error('Não foi possível autenticar')
@@ -72,11 +79,32 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function signOut() {
+    setUser({} as User)
+    await AsyncStorage.removeItem(COLLECTION_USERS)
+  }
+
+  async function loadUserStorageData() {
+    const storage = await AsyncStorage.getItem(COLLECTION_USERS);
+
+    if (storage) {
+      const userLogged = JSON.parse(storage) as User;
+      api.defaults.headers.authorization = `Bearer ${userLogged.token}`
+
+      setUser(userLogged)
+    }
+
+  }
+  useEffect(() => {
+    loadUserStorageData()
+  }, [])
+
   return (
     <AuthContext.Provider value={{
       user,
       loading,
       signIn,
+      signOut
     }}>
       {children}
     </AuthContext.Provider>
