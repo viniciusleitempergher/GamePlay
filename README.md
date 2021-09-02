@@ -42,7 +42,7 @@ Aplicativo para lhe ajudar a conectar-se e organiza o momento de diversão e jog
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/0kv33XYjvOgvKGKHBaiR07/GamePlay-NLW-Together?node-id=58913%3A83). É necessário ter conta no [Figma](http://figma.com/) para acessá-lo.
+Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/jD0uHWt7IDGRkYaMAOhEpf/GamePlay?node-id=58913%3A83). É necessário ter conta no [Figma](http://figma.com/) para acessá-lo.
 
 
 ## Executando o projeto
